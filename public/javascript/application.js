@@ -2,7 +2,7 @@
 
   "use strict";
 
-  var localStorage = chrome.storage
+  var localStorage = c.storage
   , recognized = false
   , btnStartSpeech = d.getElementById("start-speech")
   , btnSave = d.getElementById("save-note")
