@@ -13,7 +13,7 @@ body, textarea {
   font: normal 100%/normal Helvetica, Arial, sans-serif;
 }
 a{color: #7b7b7b;}
-  
+
 
 /* Fontes */
 @font-face {
@@ -60,8 +60,6 @@ a{color: #7b7b7b;}
 	content: "\e08a";
 	display: block;
 	font-size: 5em;
-	margin-top: 32px;
-
 }
 .icon-checkmark-circle:before {
 	content: "\e001";
