@@ -3,16 +3,17 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-
+fieldset{border: none;}
 * {
   margin: 0;
   padding: 0;
 }
 
-body {
+body, textarea {
   font: normal 100%/normal Helvetica, Arial, sans-serif;
-  background: #ecf0f1;
 }
+a{color: #7b7b7b;}
+  
 
 /* Fontes */
 @font-face {
@@ -50,6 +51,7 @@ body {
 }
 .icon-trash:before {
 	content: "\e061";
+	color: #e74c3c
 }
 .icon-settings:before {
 	content: "\e06b";
@@ -68,22 +70,36 @@ body {
 	content: "\e007";
 	font-size: 1.5em;
 }
-[class^="icon-"]{color: #fbfbfb; }
-.icon{
+[class^="icon-"]{color: #fbfbfb; text-decoration: none; }
+.icon-list{padding: 5px;}
+.main{background: #ecf0f1;}
+.sidebar{background: #bdc3c7;}
+.main .header,
+.main .icon-list{
 	background: #34495e;
-	padding: 5px;
 }
-.header{
-	background: #34495e;
-	padding: 7px 0;
+.sidebar .header,
+.sidebar .icon-list{
+	background: #7f8c8d;
 }
+.header{padding: 7px 0;}
+
+
 .limit{padding-right:10px; padding-left: 10px;}
 .button-speech{
-	background: #1abc9c;
+	background: rgb(26,188,156);
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhYmM5YyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxNmEwODUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(26,188,156,1) 0%, rgba(22,160,133,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(26,188,156,1)), color-stop(100%,rgba(22,160,133,1)));
+	background: -webkit-linear-gradient(top,  rgba(26,188,156,1) 0%,rgba(22,160,133,1) 100%);
+	background: -o-linear-gradient(top,  rgba(26,188,156,1) 0%,rgba(22,160,133,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(26,188,156,1) 0%,rgba(22,160,133,1) 100%);
+	background: linear-gradient(to bottom,  rgba(26,188,156,1) 0%,rgba(22,160,133,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1abc9c', endColorstr='#16a085',GradientType=0 );
 	border-radius: 150px;
 	-moz-border-radius: 150px;
 	-webkit-border-radius: 150px;
-	border: 3px solid #fff;
+	border: 1px solid #16a085;
 	display: block;
 	height: 150px;
 	margin: 0 auto;
@@ -91,7 +107,72 @@ body {
 	text-align: center;
 	width: 150px;
 }
-.main{
-	padding-top: 15px; 
-	padding-bottom: 15px;
+.button-speech:hover,
+.button-speech:focus{
+	background: #16a085;
+}
+.header-content{
+	color: #2a2a2a;
+	padding: 15px 0 30px;
+	text-align: center;
+}
+textarea{
+	color: #848484;
+	margin: 30px 0 10px;
+	padding: 10px;
+}
+textarea, .btn-confirm{
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border: 1px solid #bdc3c7;
+	font-size: 1em;
+	width: 100%
+}
+.btn-confirm{
+	border: 1px solid;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	background-color: #e6e6e6;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	color: #333;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: normal;
+	font-size: 1.5em;
+	line-height: 20px;
+	padding: 10px 12px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	vertical-align: middle;
+}
+.btn-confirm:hover{
+	background-position: 0 -15px;
+	transition: background-position 0.1s linear;
+	-o-transition: background-position 0.1s linear;
+	-moz-transition: background-position 0.1s linear;
+	-webkit-transition: background-position 0.1s linear;
+}
+.footer{
+	color: #848484;
+	font-size: 0.8em;
+	margin: 20px 0 0;
+	padding-bottom: 10px;
+	text-align: center;
+}
+.list{
+	background: #f2f2f2;
+	padding: 10px;
+	overflow: hidden;
+}
+.box-action{
+	float: right;
+	margin-right: 10px;
+	width: 75%;
 }
