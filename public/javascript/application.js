@@ -2,51 +2,47 @@
 
   "use strict";
 
-  var button = d.getElementById("start-speech");
+  var button = d.getElementById("start-speech")
+  , todoList = d.getElementById("todo-list");
 
   if ( 'webkitSpeechRecognition' in window ) {
-    console.log(window.webkitSpeechRecognition);
     var recognition = new webkitSpeechRecognition();
 
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.lang = 'en-US';
+    // recognition.continuous = false;
+    // recognition.interimResults = false;
+    recognition.lang = 'pt-BR';
 
     recognition.onstart = function(evt) {
-      console.log("Starting", evt);
+      console.log("Starting Record");
     };
 
     recognition.onresult = function(evt) {
-      var interim_transcript = '';
+      var recordedText = ""
+      , liTemplate = "";
 
-      for (var i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          interim_transcript += event.results[i][0].transcript;
-        } else {
-          interim_transcript += event.results[i][0].transcript;
-        }
+      for (var i = event.resultIndex; i < event.results.length; i += 1) {
+        recordedText += event.results[i][0].transcript;
       }
 
-      console.log(interim_transcript);
-      // final_transcript = capitalize(final_transcript);
-      // final_span.innerHTML = linebreak(final_transcript);
-      // interim_span.innerHTML = linebreak(interim_transcript);
+      liTemplate = "<li class='todo-list-item'>" + recordedText + "<li>";
+      todoList.insertAdjacentHTML("afterbegin", liTemplate);
+
+      console.log(recordedText);
     };
 
     recognition.onerror = function(evt) {
-      console.log(evt)
+      console.log("Error");
     };
 
     recognition.onend = function(evt) {
-      console.log(evt);
+      console.log("End Record", evt);
+      recognition.stop();
     };
 
-    recognition.start();
-
-    // button.addEventListener("click", function(ev) {
-    //   ev.preventDefault();
-    //   recognition.start();
-    // }, false);
+    button.addEventListener("click", function(ev) {
+      ev.preventDefault();
+      recognition.start();
+    }, false);
 
   }
 
