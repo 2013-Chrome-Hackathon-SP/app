@@ -3,7 +3,6 @@
   "use strict";
 
   var localStorage = c.storage
-  , recognized = false
   , btnStartSpeech = d.getElementById("start-speech")
   , btnSave = d.getElementById("save-note")
   , textarea = d.getElementById("speeched-text");
@@ -16,7 +15,6 @@
     recognition.lang = 'pt-BR';
 
     recognition.onstart = function(evt) {
-      recognized = true;
       console.log("Starting Record");
     };
 
@@ -38,17 +36,15 @@
 
     recognition.onend = function(evt) {
       console.log("End Record", evt);
-      recognized = false;
+      btnStartSpeech.className = "icon-speech button-speech";
       recognition.stop();
     };
 
     btnStartSpeech.addEventListener("click", function(ev) {
-      if ( recognized ) {
-        recognition.stop();
-        return;
-      }
-      ev.preventDefault();
+      var el = this;
+      el.className = "icon-spin spin-animate button-speech";
       recognition.start();
+      ev.preventDefault();
     }, false);
 
     btnSave.addEventListener("click", function(ev) {

@@ -109,6 +109,17 @@ a{color: #7b7b7b;}
 .button-speech:focus{
 	background: #16a085;
 }
+.spin-animate{
+  -webkit-animation: spinning 3s linear 0s infinite;
+}
+@-webkit-keyframes spinning {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
 .header-content{
 	color: #2a2a2a;
 	padding: 15px 0 30px;

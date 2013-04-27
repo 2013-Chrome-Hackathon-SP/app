@@ -15,6 +15,6 @@
     }
   },
 
-  "permissions": ["audioCapture", "storage"],
+  "permissions": ["audioCapture", "storage", "unlimitedStorage"],
   "minimum_chrome_version": "23"
 }
