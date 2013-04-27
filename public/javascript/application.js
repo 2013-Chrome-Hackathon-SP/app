@@ -2,30 +2,31 @@
 
   "use strict";
 
-  var button = d.getElementById("start-speech")
-  , todoList = d.getElementById("todo-list");
+  var localStorage = chrome.storage.local
+  , recognized = false
+  , button = d.getElementById("start-speech")
+  , textarea = d.getElementById("speeched-text");
 
-  if ( 'webkitSpeechRecognition' in window ) {
+  if ( 'webkitSpeechRecognition' in w ) {
     var recognition = new webkitSpeechRecognition();
 
-    // recognition.continuous = false;
-    // recognition.interimResults = false;
+    recognition.continuous = false;
+    recognition.interimResults = false;
     recognition.lang = 'pt-BR';
 
     recognition.onstart = function(evt) {
+      recognized = true;
       console.log("Starting Record");
     };
 
     recognition.onresult = function(evt) {
-      var recordedText = ""
-      , liTemplate = "";
+      var recordedText = "";
 
       for (var i = event.resultIndex; i < event.results.length; i += 1) {
         recordedText += event.results[i][0].transcript;
       }
 
-      liTemplate = "<li class='todo-list-item'>" + recordedText + "<li>";
-      todoList.insertAdjacentHTML("afterbegin", liTemplate);
+      textarea.value = recordedText;
 
       console.log(recordedText);
     };
@@ -36,10 +37,15 @@
 
     recognition.onend = function(evt) {
       console.log("End Record", evt);
+      recognized = false;
       recognition.stop();
     };
 
     button.addEventListener("click", function(ev) {
+      if ( recognized ) {
+        recognition.stop();
+        return;
+      }
       ev.preventDefault();
       recognition.start();
     }, false);
