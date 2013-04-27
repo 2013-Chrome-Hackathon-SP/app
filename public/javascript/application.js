@@ -7,6 +7,14 @@
   , btnSave = d.getElementById("save-note")
   , textarea = d.getElementById("speeched-text");
 
+  d.getElementById("list-item").onclick = function() {
+    d.getElementById("sidebar").style.display = "block";
+  };
+
+  d.getElementById("header-sidebar").onclick = function() {
+    d.getElementById("sidebar").style.display = "none";
+  };
+
   if ( 'webkitSpeechRecognition' in w ) {
     var recognition = new webkitSpeechRecognition();
 
@@ -42,13 +50,13 @@
 
     btnStartSpeech.addEventListener("click", function(ev) {
       var el = this;
-      el.className = "icon-spin spin-animate button-speech";
+      el.className = "icon-speech button-speech recording";
       recognition.start();
       ev.preventDefault();
     }, false);
 
     btnSave.addEventListener("click", function(ev) {
-      // textarea.value - variável que contém o texto do usuário
+      textarea.value = "";
       ev.preventDefault();
     });
 

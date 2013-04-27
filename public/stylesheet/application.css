@@ -15,6 +15,10 @@ body, textarea {
 }
 a{color: #7b7b7b;}
 
+html, body{
+  height: 100%;
+  width: 100%;
+}
 
 /* Fontes */
 @font-face {
@@ -89,7 +93,7 @@ a{color: #7b7b7b;}
 }
 
 [class^="icon-"]{
-	color: #fbfbfb; 
+	color: #fbfbfb;
 	text-decoration: none;
 }
 .icon-list{padding: 5px;}
@@ -131,6 +135,10 @@ a{color: #7b7b7b;}
 	text-decoration: none;
 	text-align: center;
 	width: 150px;
+}
+.button-speech.recording,
+.button-speech.recording:hover{
+  background: #e74c3c;
 }
 .button-speech:hover,
 .button-speech:focus{
