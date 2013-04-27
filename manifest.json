@@ -15,6 +15,6 @@
     }
   },
 
-  "permissions": ["experimental"],
+  "permissions": ["experimental", "audioCapture"],
   "minimum_chrome_version": "23"
 }
