@@ -73,6 +73,7 @@ a{color: #7b7b7b;}
 }
 .icon-spin:before {
 	content: "\3f";
+	font-size: 5em;
 }
 .icon-mail:before {
 	content: "\e000";
