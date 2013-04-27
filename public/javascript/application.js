@@ -2,9 +2,10 @@
 
   "use strict";
 
-  var localStorage = chrome.storage.local
+  var localStorage = chrome.storage
   , recognized = false
-  , button = d.getElementById("start-speech")
+  , btnStartSpeech = d.getElementById("start-speech")
+  , btnSave = d.getElementById("save-note")
   , textarea = d.getElementById("speeched-text");
 
   if ( 'webkitSpeechRecognition' in w ) {
@@ -41,7 +42,7 @@
       recognition.stop();
     };
 
-    button.addEventListener("click", function(ev) {
+    btnStartSpeech.addEventListener("click", function(ev) {
       if ( recognized ) {
         recognition.stop();
         return;
@@ -49,6 +50,11 @@
       ev.preventDefault();
       recognition.start();
     }, false);
+
+    btnSave.addEventListener("click", function(ev) {
+      // textarea.value - variável que contém o texto do usuário
+      ev.preventDefault();
+    });
 
   }
 
