@@ -1,13 +1,20 @@
 {
-  "manifest_version": 2,
-  "name": "Hello World",
+  "name": "Chrome Apps Hackathon",
   "version": "1",
-  "permissions": [],
+  "manifest_version": 2,
+
+  "description": "Mais um app com amor",
+  "icons": {
+    "16": "app-logo-16.png",
+    "128": "app-logo-128.png"
+  },
+
   "app": {
     "background": {
       "scripts": ["main.js"]
     }
   },
-  "minimum_chrome_version": "23"
 
+  "permissions": [],
+  "minimum_chrome_version": "23"
 }
