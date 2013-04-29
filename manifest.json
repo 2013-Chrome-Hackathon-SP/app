@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "manifest_version": 2,
 
-  "description": "Mais um app com amor",
+  "description": "'Say something' allows you to write and keep all your to-do list by a simple voice command!",
   "icons": {
     "16": "app-logo-16.png",
     "128": "app-logo-128.png"
