@@ -1,65 +1,61 @@
-;(function(c, w, d, u) {
+var SaySomenthingModule = angular.module("SaySomenthing", []);
 
-  "use strict";
+SaySomenthingModule.controller("TodoController", function($scope) {
+  var SPEECH = new SpeechRecognition();
 
-  var localStorage = c.storage
-  , btnStartSpeech = d.getElementById("start-speech")
-  , btnSave = d.getElementById("save-note")
-  , textarea = d.getElementById("speeched-text");
+  $scope.items = [];
 
-  d.getElementById("list-item").onclick = function() {
-    d.getElementById("sidebar").style.display = "block";
-  };
+  chrome.storage.local.get(function(dataStoraged) {
+    var localStoraged = Object.keys(dataStoraged).sort(function(a, b){ return a + b });
 
-  d.getElementById("header-sidebar").onclick = function() {
-    d.getElementById("sidebar").style.display = "none";
-  };
+    localStoraged.forEach(function(key) {
+      var obj;
 
-  if ( 'webkitSpeechRecognition' in w ) {
-    var recognition = new webkitSpeechRecognition();
+      obj = {
+        "id": key,
+        "content": dataStoraged[key]["content"],
+        "checked": dataStoraged[key]["checked"]
+      };
 
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = 'pt-BR';
-
-    recognition.onstart = function(evt) {
-      console.log("Starting Record");
-    };
-
-    recognition.onresult = function(evt) {
-      var recordedText = "";
-
-      for (var i = event.resultIndex; i < event.results.length; i += 1) {
-        recordedText += event.results[i][0].transcript;
-      }
-
-      textarea.value = recordedText;
-
-      console.log(recordedText);
-    };
-
-    recognition.onerror = function(evt) {
-      console.log("Error");
-    };
-
-    recognition.onend = function(evt) {
-      console.log("End Record", evt);
-      btnStartSpeech.className = "icon-speech button-speech";
-      recognition.stop();
-    };
-
-    btnStartSpeech.addEventListener("click", function(ev) {
-      var el = this;
-      el.className = "icon-speech button-speech recording";
-      recognition.start();
-      ev.preventDefault();
-    }, false);
-
-    btnSave.addEventListener("click", function(ev) {
-      textarea.value = "";
-      ev.preventDefault();
+      $scope.$apply(function($scope) {
+        $scope.items.push(obj);
+      });
     });
+  });
 
-  }
+  $scope.startRecord = function(event) {
+    if ( SPEECH.recognition.isRecording ) {
+      SPEECH.recognition.isRecording = false;
+      SPEECH.recognition.stop();
+      return;
+    }
+    SPEECH.recognition.start();
+  };
 
-}(chrome, window, document, undefined));
+  $scope.remove = function(index, item) {
+    $scope.items.splice(index, 1);
+    chrome.storage.local.remove(item.id);
+  };
+
+  $scope.addTodo = function() {
+    var hash = "" + Date.now()
+    , todoContent = $scope.todoContent
+    , dataToStorage = {}
+    , dataToPush = {};
+
+    dataToStorage[hash] = {
+      "content": todoContent,
+      "checked": false
+    };
+
+    dataToPush = {
+      "id": hash,
+      "content": todoContent,
+      "checked": false
+    };
+
+    chrome.storage.local.set(dataToStorage);
+    $scope.items.unshift(dataToPush);
+    $scope.todoContent = "";
+  };
+});
