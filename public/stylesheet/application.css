@@ -4,6 +4,21 @@
     -webkit-box-sizing: border-box;
 }
 
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
 fieldset {
     border: none;
 }
@@ -120,14 +135,6 @@ body {
     padding: 5px;
 }
 
-.main {
-    /*background: #ecf0f1;*/
-}
-
-.sidebar {
-    background: #ecf0f1;
-}
-
 .main .header,
 .main .icon-list {
     background: #34495e;
@@ -141,6 +148,28 @@ body {
 .header {
     padding: 7px 0;
     height: 35px;
+}
+
+.main {
+    background: #ecf0f1;
+    height: 100%;
+    margin-left: 0;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    -webkit-transition: all ease-in 250ms;
+}
+
+.sidebar {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 85%;
+    z-index: 1;
+}
+
+.sidebar-opened + .main {
+    margin-left: 85%;
 }
 
 .sidebar .header h1 {
@@ -169,6 +198,7 @@ body {
     -moz-border-radius: 150px;
     -webkit-border-radius: 150px;
     border: 1px solid #16a085;
+    cursor: pointer;
     display: block;
     height: 150px;
     margin: 0 auto;
@@ -263,7 +293,8 @@ textarea, .btn-confirm {
 }
 
 .list {
-    padding: 10px 5px;
+    max-height: 470px;
+    padding: 10px 5px 30px;
     overflow-y: auto;
 }
 
@@ -286,6 +317,9 @@ textarea, .btn-confirm {
     line-height: 24px;
     padding: 0 0 5px;
     border-bottom: 1px solid #ccc;
+}
+.list-item.item-checked{
+    text-decoration: line-through;
 }
 
 .box-actions {

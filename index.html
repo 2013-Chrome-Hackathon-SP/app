@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="public/stylesheet/application.css">
 </head>
 <body ng-controller="TodoController">
-	<sidebar id="sidebar" class="sidebar" style="display: none;">
+	<sidebar id="sidebar" ng-class="getClassSidebar()">
 		<header id="header-sidebar" class="header limit" role="banner">
 			<h1>My to-do List</h1>
 		</header>
@@ -14,11 +14,11 @@
 		<main role="main" class="limit">
 			<ul class="list">
 				<li ng-repeat="item in items">
-					<div class="list-item">
+					<div ng-class="getListItemClass(item)">
 						<p>{{item.content}}</p>
 					</div>
 					<div class="box-actions">
-						<a href="" class="icon-checkmark-circle" nd-click="checkTodoItem()"></a>
+						<a href="" class="icon-checkmark-circle" ng-click="checkTodoItem(item)"></a>
 						<a href="mailto:?subject=My note on Say Something&body={{item.content}}" class="icon-mail"></a>
 						<a href="" class="icon-trash" ng-click="remove($index, item)"></a>
 					</div>
@@ -29,14 +29,14 @@
 
 	<div class="main">
 		<header class="header limit" role="banner">
-			<a href="#" id="list-item" class="icon-list icon"></a>
+			<a href="#" id="list-item" ng-click="showTodoList()" class="icon-list icon"></a>
 		</header>
 
 		<main role="main" class="limit ">
 			<header class="header-content">
 				<p>Push the button and say something...</p>
 			</header>
-			<button id="start-speech" ng-click="startRecord()" class="icon-speech button-speech"></button>
+			<button id="start-speech" ng-click="startRecord()" ng-class="getClassRecordButton()"></button>
 			<textarea id="speeched-text" ng-model="todoContent" rows="2"></textarea>
 			<button id="save-note" class="btn-confirm" ng-click="addTodo()">Save</button>
 		</main>
