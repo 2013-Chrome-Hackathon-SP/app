@@ -48,6 +48,7 @@ SaySomenthingModule.controller("TodoController", function($scope) {
   $scope.sidebarIndex = 0;
   $scope.recordingButtonClass = ["icon-speech button-speech", "icon-speech button-speech recording"];
   $scope.recordingButtonIndex = 0;
+  $scope.checkTodoClass = "icon-checkmark";
 
   $scope.items = [];
 
@@ -127,6 +128,13 @@ SaySomenthingModule.controller("TodoController", function($scope) {
     item.checked = true;
     chrome.storage.local.set(dataToStorage);
     return;
+  };
+
+  $scope.getCheckButtonClass = function(item) {
+    if ( item.checked ) {
+      return "icon-checkmark-circle";
+    }
+    return "icon-checkmark";
   };
 
   $scope.remove = function(index, item) {

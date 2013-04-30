@@ -18,8 +18,7 @@
 						<p>{{item.content}}</p>
 					</div>
 					<div class="box-actions">
-						<a href="" class="icon-checkmark-circle" ng-click="checkTodoItem(item)"></a>
-						<a href="mailto:?subject=My note on Say Something&body={{item.content}}" class="icon-mail"></a>
+						<a href="" ng-class="getCheckButtonClass(item)" ng-click="checkTodoItem(item)"></a>
 						<a href="" class="icon-trash" ng-click="remove($index, item)"></a>
 					</div>
 				</li>
@@ -43,7 +42,7 @@
 
 		<footer role="contentinfo" class="footer limit">
 			<p>Developed in Chrome Apps Hackathon - 27/Apr/2013 - Brazil</p>
-			<a href="https://github.com/2013-Chrome-Hackathon-SP/app">Fork me on Github</a>
+			<a target="_blank" href="https://github.com/2013-Chrome-Hackathon-SP/app">Fork me on Github</a>
 		</footer>
 	</div>
 
